@@ -1,7 +1,7 @@
 #pragma once
 
 // numbers
-#define PLAYER_WIDTH_HEIGHT 64
+#define UNIT 64
 
 // tags
 #define ENEMY "Enemy"

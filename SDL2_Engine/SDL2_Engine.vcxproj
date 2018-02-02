@@ -32,6 +32,7 @@
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />

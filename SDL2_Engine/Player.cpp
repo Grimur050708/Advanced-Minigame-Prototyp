@@ -64,8 +64,8 @@ void Player::Update(float _deltaTime)
 	{
 		// create bullet
 		Bullet* bullet = new Bullet(nullptr, nullptr,
-			new Rect(m_pRect->x + x * PLAYER_WIDTH_HEIGHT,
-				m_pRect->y + y * PLAYER_WIDTH_HEIGHT, 16, 16), x, y);
+			new Rect(m_pRect->x + x * UNIT,
+				m_pRect->y + y * UNIT, 16, 16), x, y);
 
 		// add to list
 		m_pScene->AddMoveEntity(bullet);

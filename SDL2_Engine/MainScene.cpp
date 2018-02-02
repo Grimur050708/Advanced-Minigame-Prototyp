@@ -79,7 +79,7 @@ void MainScene::Load(Renderer * _pRenderer)
 	// create player
 	m_pPlayer = new Player(_pRenderer, 
 		GetAssetPath("Texture/Character/T_Character_Idle.png", 5).c_str(), 
-		new Rect(0, 0, 64, 64));
+		new Rect(Point::Zero(), Point::Unit()));
 
 	// set speed
 	m_pPlayer->SetSpeed(150);
@@ -107,7 +107,7 @@ void MainScene::Load(Renderer * _pRenderer)
 	// create enemy
 	Enemy* enemy = new Enemy(_pRenderer,
 		GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
-		new Rect(128, 128, 64, 64),
+		new Rect(new Point(128), Point::Unit()),
 		GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
 
 	// set speed
@@ -122,7 +122,7 @@ void MainScene::Load(Renderer * _pRenderer)
 	// create enemy 2
 	Enemy* enemy2 = new Enemy(_pRenderer,
 		GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
-		new Rect(256, 128, 64, 64),
+		new Rect(256, 128, Point::Unit()),
 		GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
 
 	// set speed

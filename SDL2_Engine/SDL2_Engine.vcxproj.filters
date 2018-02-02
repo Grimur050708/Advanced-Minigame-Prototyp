@@ -115,6 +115,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Game\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Engine\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Macros.h">
       <Filter>Engine\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Engine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
