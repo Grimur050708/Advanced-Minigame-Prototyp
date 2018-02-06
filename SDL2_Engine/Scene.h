@@ -31,6 +31,10 @@ public:
 	// add move entity to list
 	inline void AddMoveEntity(TexturedEntity* _pEntity) { m_pMoveEntities.push_back(_pEntity); };
 
+	// add entity to remove list
+	inline void AddRemoveEntity(Entity* _pEntity) 
+		{ m_pEntitiesToRemove.push_back(_pEntity); };
+
 protected:
 	// engine
 	Engine* m_pEngine;

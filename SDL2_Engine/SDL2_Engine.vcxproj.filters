@@ -52,6 +52,9 @@
     <Filter Include="Engine\Time">
       <UniqueIdentifier>{3ea50c0f-b70e-47f0-882f-e1da43fbe76f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Entity\Pickups">
+      <UniqueIdentifier>{f15a8139-06ad-4469-88d2-068c98945fa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -117,6 +120,12 @@
     </ClCompile>
     <ClCompile Include="Point.cpp">
       <Filter>Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickup.cpp">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="Soulstone.cpp">
+      <Filter>Game\Entity\Pickups</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +197,12 @@
     </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickup.h">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="Soulstone.h">
+      <Filter>Game\Entity\Pickups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

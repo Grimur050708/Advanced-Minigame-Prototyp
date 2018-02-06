@@ -63,7 +63,7 @@ void Player::Update(float _deltaTime)
 	if (Input::GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		// create bullet
-		Bullet* bullet = new Bullet(nullptr, nullptr,
+ 		Bullet* bullet = new Bullet(nullptr, nullptr,
 			new Rect(m_pRect->x + x * UNIT,
 				m_pRect->y + y * UNIT, 16, 16), x, y);
 
@@ -112,8 +112,18 @@ void Player::CheckMoveable(std::list<TexturedEntity*> _pEntities, float _deltaTi
 
 	// check entities
 	for each (Entity* entity in _pEntities)
+	{
 		if (Physics::RectRectCollision(nextRect, entity->GetRect())
 			&& (entity->GetColType() == ECollisionType::MOVE
 			|| entity->GetColType() == ECollisionType::WALL))
+		{
 			m_isMoveable = false;
+		}
+		if (Physics::RectRectCollision(nextRect, entity->GetRect()) 
+			&& entity->GetColType() == ECollisionType::TRIGGER)
+		{
+			entity->Trigger(this);
+			m_pScene->AddRemoveEntity(entity);
+		}
+	}
 }

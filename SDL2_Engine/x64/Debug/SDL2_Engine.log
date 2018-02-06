@@ -11,6 +11,10 @@ d:\github\advanced-minigame-prototyp\library\sdl2\include\sdl_render.h(127): war
   d:\github\advanced-minigame-prototyp\sdl2_engine\text.h(7): note: see declaration of 'SDL_Texture'
 d:\github\advanced-minigame-prototyp\library\sdl2\include\sdl_render.h(128): warning C4099: 'SDL_Texture': type name first seen using 'class' now seen using 'struct'
   d:\github\advanced-minigame-prototyp\library\sdl2\include\sdl_render.h(127): note: see declaration of 'SDL_Texture'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Soulstone.cpp
+  Player.cpp
   SDL2_Engine.vcxproj -> D:\GitHub\Advanced-Minigame-Prototyp\Build\bin\x64\Debug\SDL2_Engine.exe
   D:\GitHub\Advanced-Minigame-Prototyp\Library\SDL2\lib\x64\SDL2.dll
   1 Datei(en) kopiert

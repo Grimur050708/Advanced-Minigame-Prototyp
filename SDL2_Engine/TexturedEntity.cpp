@@ -31,6 +31,10 @@ void TexturedEntity::Render(Renderer * _pRenderer)
 	_pRenderer->RenderTexture(m_pTexture, m_pRect, nullptr, m_angle, true);
 }
 
+void TexturedEntity::Trigger(Player* _pPlayer)
+{
+}
+
 Rect * TexturedEntity::GetRect()
 {
 	return m_pRect;

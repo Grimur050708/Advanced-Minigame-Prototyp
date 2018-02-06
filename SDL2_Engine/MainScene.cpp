@@ -12,6 +12,7 @@
 #include "World.h"
 #include "Time.h"
 #include "Enemy.h"
+#include "Soulstone.h"
 
 MainScene::MainScene(Engine * _pEngine)
 	: Scene(_pEngine)
@@ -133,6 +134,12 @@ void MainScene::Load(Renderer * _pRenderer)
 
 	// add enemy to list
 	m_pMoveEntities.push_back(enemy2);
+
+	Soulstone* soulstone = new Soulstone(_pRenderer,
+		GetAssetPath("Texture/Items/T_Soulstone.png", 5).c_str(),
+		new Rect(new Point(256 + 16), new Point(32)));
+
+	m_pMoveEntities.push_back(soulstone);
 }
 
 void MainScene::Unload()
@@ -155,7 +162,7 @@ void MainScene::CheckCollision(float _deltaTime)
 				if (moveEntity->GetColType() == ECollisionType::NONE ||
 					moveEntity->GetColType() == ECollisionType::BULLET)
 					continue;
-
+				
 				// check collision
 				if (Physics::RectRectCollision(entity->GetRect(), moveEntity->GetRect()))
 				{
