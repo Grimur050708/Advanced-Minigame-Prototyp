@@ -1,6 +1,7 @@
 #include "Actor.h"
 #include "Rect.h"
 #include "Renderer.h"
+#include <cstdlib>
 
 Actor::Actor(Renderer * _pRenderer, 
 	const char * _pFileName, Rect * _pRect)
@@ -15,9 +16,21 @@ Actor::~Actor()
 
 void Actor::Update(float _deltaTime)
 {
+	// absolute values of movement
+	int x = std::abs((m_xMovement)* m_speed * _deltaTime);
+	int y = std::abs((m_yMovement)* m_speed * _deltaTime);
+
+	// negative movement x
+	if (m_xMovement < 0)
+		x = -x;
+
+	// negative movement y
+	if (m_yMovement < 0)
+		y = -y;
+
 	// add movement to rect
-	m_pRect->x += m_xMovement * m_speed * _deltaTime;
-	m_pRect->y += m_yMovement * m_speed * _deltaTime;
+	m_pRect->x += x;
+	m_pRect->y += y;
 
 	// calculate angle
 	CalculateAngle();
