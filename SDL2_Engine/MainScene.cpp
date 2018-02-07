@@ -13,6 +13,7 @@
 #include "Time.h"
 #include "Enemy.h"
 #include "Soulstone.h"
+#include "Chest.h"
 
 MainScene::MainScene(Engine * _pEngine)
 	: Scene(_pEngine)
@@ -135,11 +136,23 @@ void MainScene::Load(Renderer * _pRenderer)
 	// add enemy to list
 	m_pMoveEntities.push_back(enemy2);
 
+	// create soulstone
 	Soulstone* soulstone = new Soulstone(_pRenderer,
 		GetAssetPath("Texture/Items/T_Soulstone.png", 5).c_str(),
 		new Rect(new Point(256 + 16), new Point(32)));
 
+	// add soulstone to entity list
 	m_pMoveEntities.push_back(soulstone);
+
+	// create chest
+	Chest* chest = new Chest(_pRenderer,
+		GetAssetPath("Texture/Objects/T_Chest.png", 5).c_str(),
+		new Rect(new Point(512), new Point(64)), 
+		new Rect(new Point(528, 512 + 64), new Point(32)));
+
+	// addchest to entity list
+	m_pMoveEntities.push_back(chest);
+	m_pMoveEntities.push_back((TexturedEntity*)chest->GetTrigger());
 }
 
 void MainScene::Unload()

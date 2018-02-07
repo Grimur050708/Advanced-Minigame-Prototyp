@@ -123,7 +123,7 @@ void Player::CheckMoveable(std::list<TexturedEntity*> _pEntities, float _deltaTi
 			&& entity->GetColType() == ECollisionType::TRIGGER)
 		{
 			entity->Trigger(this);
-			m_pScene->AddRemoveEntity(entity);
+			// m_pScene->AddRemoveEntity(entity);
 		}
 	}
 }
