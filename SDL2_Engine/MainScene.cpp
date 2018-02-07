@@ -79,7 +79,7 @@ void MainScene::Load(Renderer * _pRenderer)
 	// create player
 	m_pPlayer = new Player(_pRenderer, 
 		GetAssetPath("Texture/Character/T_Character_Idle.png", 5).c_str(), 
-		new Rect(Point::Zero(), Point::Unit()));
+		new Rect(2064,600, Point::Unit()));
 
 	// set speed
 	m_pPlayer->SetSpeed(150);
@@ -98,7 +98,7 @@ void MainScene::Load(Renderer * _pRenderer)
 	m_pFPS->Load(_pRenderer);
 
 	// create new world
-	m_pWorld = new World(_pRenderer, GetAssetPath("Texture/World/T_Atlas.png", 5).c_str(),
+	m_pWorld = new World(_pRenderer, GetAssetPath("Texture/World/T_world.png", 5).c_str(),
 		new Rect());
 
 	// load world
