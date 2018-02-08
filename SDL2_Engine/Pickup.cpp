@@ -1,4 +1,8 @@
+// Nils Jungjohann
+
 #include "Pickup.h"
+#include "Scene.h"
+#include "Player.h"
 
 Pickup::Pickup(Renderer * _pRenderer, const char * _pFileName, Rect * _pRect)
 	: TexturedEntity(_pRenderer, _pFileName, _pRect)
@@ -17,4 +21,5 @@ void Pickup::Render(Renderer * _pRenderer)
 
 void Pickup::Trigger(Player * _pPlayer)
 {
+	_pPlayer->GetScene()->AddRemoveEntity(this);
 }

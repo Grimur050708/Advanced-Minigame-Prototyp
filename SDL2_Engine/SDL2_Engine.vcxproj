@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InteractiveEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -42,11 +44,13 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TexturedEntity.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TriggerEntity.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Chest.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
@@ -55,6 +59,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="InteractiveEntity.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Physics.h" />
@@ -69,6 +74,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TexturedEntity.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TriggerEntity.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

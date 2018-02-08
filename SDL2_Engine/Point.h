@@ -1,3 +1,5 @@
+// Nils Jungjohann
+
 #pragma once
 #include "Macros.h"
 

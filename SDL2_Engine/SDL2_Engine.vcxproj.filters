@@ -55,6 +55,9 @@
     <Filter Include="Game\Entity\Pickups">
       <UniqueIdentifier>{f15a8139-06ad-4469-88d2-068c98945fa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Entity\InteractiveEntities">
+      <UniqueIdentifier>{4adb5340-59df-4a14-a547-013356c2f791}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -127,6 +130,13 @@
     <ClCompile Include="Soulstone.cpp">
       <Filter>Game\Entity\Pickups</Filter>
     </ClCompile>
+    <ClCompile Include="Chest.cpp">
+      <Filter>Game\Entity\InteractiveEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractiveEntity.cpp">
+      <Filter>Game\Entity\InteractiveEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -204,5 +214,12 @@
     <ClInclude Include="Soulstone.h">
       <Filter>Game\Entity\Pickups</Filter>
     </ClInclude>
+    <ClInclude Include="Chest.h">
+      <Filter>Game\Entity\InteractiveEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveEntity.h">
+      <Filter>Game\Entity\InteractiveEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerEntity.h" />
   </ItemGroup>
 </Project>
