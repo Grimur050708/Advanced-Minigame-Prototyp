@@ -109,3 +109,7 @@ void MenuPlayer::Render(Renderer * _pRenderer)
 	m_pStartText->Load(_pRenderer);
 	m_pEndText->Load(_pRenderer);
 }
+
+void MenuPlayer::Trigger(Player * _pPlayer)
+{
+}

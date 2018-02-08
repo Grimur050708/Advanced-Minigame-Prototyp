@@ -15,7 +15,6 @@ Rect::Rect(int _w, int _h)
 	w = _w;
 	h = _h;
 }
-
 Rect::Rect(Point * _b)
 {
 	x = 0;

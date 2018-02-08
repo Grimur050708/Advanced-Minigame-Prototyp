@@ -55,6 +55,12 @@
     <Filter Include="Engine\Audio">
       <UniqueIdentifier>{12deaaeb-f0fb-4e6f-91a2-2f00cea1d348}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Entity\InteractiveEntity">
+      <UniqueIdentifier>{857ac04c-bb32-4267-909d-e1ad50ca6038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Entity\Pickups">
+      <UniqueIdentifier>{815fc959-4b57-4970-ba60-a1a6cc4c8d5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -133,6 +139,24 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Chest.cpp">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractiveEntity.cpp">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerEntity.cpp">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickup.cpp">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="Soulstone.cpp">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Engine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +241,24 @@
     </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Chest.h">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveEntity.h">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerEntity.h">
+      <Filter>Game\Entity\InteractiveEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickup.h">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="Soulstone.h">
+      <Filter>Game\Entity\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Engine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

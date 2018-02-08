@@ -6,6 +6,7 @@
 
 // tags
 #define ENEMY "Enemy"
+#define PLAYER "Player"
 #define CHEST "Chest"
 
 // console

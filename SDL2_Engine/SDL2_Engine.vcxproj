@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Chest.cpp" />
+    <ClCompile Include="InteractiveEntity.cpp" />
+    <ClCompile Include="Pickup.cpp" />
+    <ClCompile Include="Soulstone.cpp" />
+    <ClCompile Include="TriggerEntity.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -47,6 +53,12 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Chest.h" />
+    <ClInclude Include="InteractiveEntity.h" />
+    <ClInclude Include="Pickup.h" />
+    <ClInclude Include="Soulstone.h" />
+    <ClInclude Include="TriggerEntity.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Color.h" />

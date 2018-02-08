@@ -19,7 +19,7 @@ void Soulstone::Render(Renderer * _pRenderer)
 
 void Soulstone::Trigger(Player* _pPlayer)
 {
-	_pPlayer->SetSpeed(_pPlayer->GetSpeed() * 2);
+	_pPlayer->IncreaseHealth(50);
 
 	Pickup::Trigger(_pPlayer);
 }

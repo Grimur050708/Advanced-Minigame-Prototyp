@@ -11,5 +11,5 @@ Font::Font(const char * _pFile, int _size)
 
 Font::~Font()
 {
-	delete m_pFont;
+	TTF_CloseFont(m_pFont);
 }

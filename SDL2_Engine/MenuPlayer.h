@@ -22,6 +22,9 @@ public:
 	// render every frame
 	virtual void Render(Renderer* _pRenderer) override;
 
+	// trigger
+	void Trigger(Player* _pPlayer) override;
+
 	// set start game text reference
 	inline void SetStartText(Text* _ptext) { m_pStartText = _ptext; };
 

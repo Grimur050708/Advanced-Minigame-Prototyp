@@ -15,7 +15,7 @@ TexturedEntity::TexturedEntity(Renderer * _pRenderer, const char * _pFileName, R
 TexturedEntity::~TexturedEntity()
 {
 	// important to delete pointer
-	if (m_colType != ECollisionType::BULLET)
+	if(m_colType != ECollisionType::BULLET)
 		delete m_pTexture;
 
 	delete m_pRect;
