@@ -50,13 +50,10 @@
       <UniqueIdentifier>{311784a4-fb19-45a2-aaaa-00df748f484a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Time">
-      <UniqueIdentifier>{3ea50c0f-b70e-47f0-882f-e1da43fbe76f}</UniqueIdentifier>
+      <UniqueIdentifier>{28e8b909-711f-4dc5-84de-9d84dfb3ab20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Entity\Pickups">
-      <UniqueIdentifier>{f15a8139-06ad-4469-88d2-068c98945fa6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Entity\InteractiveEntities">
-      <UniqueIdentifier>{4adb5340-59df-4a14-a547-013356c2f791}</UniqueIdentifier>
+    <Filter Include="Engine\Audio">
+      <UniqueIdentifier>{12deaaeb-f0fb-4e6f-91a2-2f00cea1d348}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,22 +118,22 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Game\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <Filter>Engine\Utility</Filter>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPlayer.cpp">
+      <Filter>Game\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Pickup.cpp">
-      <Filter>Game\Entity\Pickups</Filter>
+      <Filter>Game\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Soulstone.cpp">
-      <Filter>Game\Entity\Pickups</Filter>
+    <ClCompile Include="Music.cpp">
+      <Filter>Engine\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Chest.cpp">
-      <Filter>Game\Entity\InteractiveEntities</Filter>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Engine\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveEntity.cpp">
-      <Filter>Game\Entity\InteractiveEntities</Filter>
-    </ClCompile>
-    <ClCompile Include="TriggerEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -205,21 +202,21 @@
     <ClInclude Include="Macros.h">
       <Filter>Engine\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Engine\Utility</Filter>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="MenuScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuPlayer.h">
+      <Filter>Game\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Pickup.h">
-      <Filter>Game\Entity\Pickups</Filter>
+      <Filter>Game\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Soulstone.h">
-      <Filter>Game\Entity\Pickups</Filter>
+    <ClInclude Include="Music.h">
+      <Filter>Engine\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Chest.h">
-      <Filter>Game\Entity\InteractiveEntities</Filter>
+    <ClInclude Include="Sound.h">
+      <Filter>Engine\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveEntity.h">
-      <Filter>Game\Entity\InteractiveEntities</Filter>
-    </ClInclude>
-    <ClInclude Include="TriggerEntity.h" />
   </ItemGroup>
 </Project>

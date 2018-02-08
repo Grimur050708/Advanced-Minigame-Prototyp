@@ -2,15 +2,13 @@
 
 class Rect;
 class Renderer;
-class Player;
 
 enum ECollisionType
 {
 	NONE,
 	MOVE,
 	WALL,
-	BULLET,
-	TRIGGER
+	BULLET
 };
 
 class Entity
@@ -27,9 +25,6 @@ public:
 
 	// render every frame
 	virtual void Render(Renderer* _pRenderer) = 0;
-
-	// trigger
-	virtual void Trigger(Player* _pPlayer) = 0;
 
 	// get collision type
 	inline ECollisionType GetColType() { return m_colType; };

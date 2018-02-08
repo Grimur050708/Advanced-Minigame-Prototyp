@@ -3,6 +3,7 @@
 
 class Player;
 class World;
+class Music;
 
 class MainScene : public Scene
 {
@@ -35,6 +36,9 @@ private:
 	// world
 	World* m_pWorld;
 
-	//collision and delete of entities
+	// background music
+	Music* m_pBackgroundMusic;
+
+	// collision and delete of entities
 	void CheckCollision(float _deltaTime);
 };

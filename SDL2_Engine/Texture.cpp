@@ -8,8 +8,9 @@ Texture::Texture(const char * _pFileName, Renderer * _pRenderer)
 	m_pTexture = nullptr;
 
 	// load texture if renderer
-	if (_pRenderer && _pFileName)
-		m_pTexture = IMG_LoadTexture(_pRenderer->GetRenderer(), _pFileName);
+	if(_pRenderer && _pFileName)
+		m_pTexture = IMG_LoadTexture(_pRenderer->GetRenderer(), 
+			_pFileName);
 }
 
 Texture::~Texture()
