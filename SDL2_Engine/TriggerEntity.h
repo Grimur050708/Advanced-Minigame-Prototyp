@@ -1,3 +1,5 @@
+// Nils Jungjohann
+
 #pragma once
 #include "TexturedEntity.h"
 
@@ -10,14 +12,8 @@ public:
 	// constructor
 	TriggerEntity(InteractiveEntity* _pInterEntity, Rect* _pRect);
 
-	// destructor
-	~TriggerEntity();
-
 	// update every frame
-	virtual void Update(float _deltaTime) override;
-
-	// render every frame
-	virtual void Render(Renderer* _pRenderer) override;
+	void Update(float _deltaTime) override;
 
 	// trigger
 	virtual void Trigger(Player* _pPlayer) override;
@@ -25,4 +21,10 @@ public:
 protected:
 	// Interactive Entity
 	InteractiveEntity* m_pInterEntity;
+
+	// previous triggered
+	bool m_lastTriggered = false;
+
+	// now triggered
+	bool m_nowTriggered = false;
 };

@@ -1,7 +1,10 @@
+// Nils Jungjohann
+
 #include "TriggerEntity.h"
 #include "Rect.h"
 #include "InteractiveEntity.h"
 #include "Input.h"
+#include "Chest.h"
 
 TriggerEntity::TriggerEntity(InteractiveEntity* _pInterEntity, Rect* _pRect)
 	: TexturedEntity(nullptr, nullptr, _pRect)
@@ -11,21 +14,28 @@ TriggerEntity::TriggerEntity(InteractiveEntity* _pInterEntity, Rect* _pRect)
 	m_colType = ECollisionType::TRIGGER;
 }
 
-TriggerEntity::~TriggerEntity()
-{
-	delete m_pRect;
-}
-
 void TriggerEntity::Update(float _deltaTime)
 {
-}
+	if (m_lastTriggered && !m_nowTriggered)
+		m_pInterEntity->HideTooltip();
 
-void TriggerEntity::Render(Renderer * _pRenderer)
-{
+	m_lastTriggered = m_nowTriggered;
+	m_nowTriggered = false;
+	m_pInterEntity->SetTooltipDisplayed(false);
 }
 
 void TriggerEntity::Trigger(Player * _pPlayer)
 {
+	if (m_pInterEntity->GetTag() == CHEST &&
+		!Chest::GetTooltipDisplayed() &&
+		!m_pInterEntity->GetTooltipDisplayed())
+	{
+		m_pInterEntity->ShowTooltip();
+		m_pInterEntity->SetTooltipDisplayed(true);
+	}
+
 	if (Input::GetKeyDown(SDL_SCANCODE_E))
 		m_pInterEntity->Interact();
+
+	m_nowTriggered = true;
 }

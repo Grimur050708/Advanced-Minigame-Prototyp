@@ -119,6 +119,8 @@ void Player::CheckMoveable(std::list<TexturedEntity*> _pEntities, float _deltaTi
 		{
 			m_isMoveable = false;
 		}
+
+		// Nils Jungjohann
 		if (Physics::RectRectCollision(nextRect, entity->GetRect()) 
 			&& entity->GetColType() == ECollisionType::TRIGGER)
 		{

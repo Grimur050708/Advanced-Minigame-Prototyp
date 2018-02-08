@@ -1,3 +1,5 @@
+// Nils Jungjohann
+
 #include "Point.h"
 
 Point::Point()

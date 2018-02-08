@@ -1,3 +1,5 @@
+// Nils Jungjohann
+
 #include "Pickup.h"
 #include "Scene.h"
 #include "Player.h"
