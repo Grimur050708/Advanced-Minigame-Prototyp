@@ -30,6 +30,9 @@ public:
 	// set scene
 	inline void SetScene(Scene* _pScene) { m_pScene = _pScene; };
 
+	// get scene
+	inline Scene* GetScene() { return m_pScene; };
+
 private:
 	// is moveable
 	bool m_isMoveable = true;
