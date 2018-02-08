@@ -5,9 +5,9 @@ class Bullet : public Actor
 {
 public:
 	// constructor
-	Bullet(Renderer* _pRenderer, const char* _pFileName, Rect* _pRect,
-		int _xDirection, int _yDirection);
-	
+	Bullet(Renderer* _pRenderer, const char* _pFileName,
+		Rect* _pRect, int _xDirection, int _yDirection);
+
 	// update every frame
 	virtual void Update(float _deltaTime) override;
 
@@ -16,7 +16,7 @@ public:
 
 private:
 	// direction x
-	int m_xDirection;
+	int m_xDIrection;
 
 	// direction y
 	int m_yDirection;

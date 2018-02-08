@@ -22,9 +22,6 @@ public:
 	// render text
 	void Render(Renderer* _pRenderer);
 
-	// get color
-	inline Color* GetColor() { return m_pColor; };
-
 	// set color
 	inline void SetColor(Color* _pColor) { m_pColor = _pColor; };
 

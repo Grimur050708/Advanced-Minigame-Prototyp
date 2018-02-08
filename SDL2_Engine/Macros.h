@@ -1,8 +1,12 @@
 #pragma once
+#include <iostream>
 
 // numbers
-#define PLAYER_WIDTH_HEIGHT 64
+#define UNIT 64
 
 // tags
 #define ENEMY "Enemy"
-#define PLAYER "Player"
+#define CHEST "Chest"
+
+// console
+#define LOG(TEXT) std::cout << TEXT << std::endl;

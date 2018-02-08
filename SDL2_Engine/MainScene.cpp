@@ -4,7 +4,6 @@
 #include "Rect.h"
 #include "Helper.h"
 #include "Player.h"
-#include "Enemy.h"
 #include "Text.h"
 #include "Font.h"
 #include "Color.h"
@@ -12,9 +11,9 @@
 #include "FollowEntity.h"
 #include "World.h"
 #include "Time.h"
-#include "MenuScene.h"
-#include "Pickup.h"
-#include "Music.h"
+#include "Enemy.h"
+#include "Soulstone.h"
+#include "Chest.h"
 
 MainScene::MainScene(Engine * _pEngine)
 	: Scene(_pEngine)
@@ -34,14 +33,7 @@ void MainScene::Render(Renderer * _pRenderer)
 
 	// render world entities
 	m_pWorld->RenderEntities(_pRenderer, m_pPlayer->GetRect()->x, m_pPlayer->GetRect()->y);
-
-	// render player
-	m_pPlayer->Render(_pRenderer);
-
-	// render every move entity
-	for each(TexturedEntity* entity in m_pMoveEntities)
-		entity->Render(_pRenderer);
-
+	
 	// render every move entity
 	for each(Entity* entity in m_pMoveEntities)
 		entity->Render(_pRenderer);
@@ -55,24 +47,21 @@ void MainScene::Render(Renderer * _pRenderer)
 	std::string fpsText = "FPS: ";
 	fpsText.append(std::to_string(Time::GetFPS()));
 
-	// set text of fpsText
+	// set text to fpsText
 	m_pFPS->SetText(fpsText.c_str());
 
 	// load text
 	m_pFPS->Load(_pRenderer);
 
-	// render fps text
+	// render text
 	m_pFPS->Render(_pRenderer);
 }
 
 void MainScene::Update(float _deltaTime)
 {
 	// update every move entity
-	for each(TexturedEntity* entity in m_pMoveEntities)
+	for each(Entity* entity in m_pMoveEntities)
 		entity->Update(_deltaTime);
-
-	// update player
-	m_pPlayer->Update(_deltaTime);
 
 	// set player moveable
 	m_pPlayer->SetMoveable(true);
@@ -80,21 +69,10 @@ void MainScene::Update(float _deltaTime)
 	// check player collision
 	m_pPlayer->CheckMoveable(m_pWorld->GetEntities(), _deltaTime);
 
-	// check player collision with move entities
+	// check player collision with move entitues
 	m_pPlayer->CheckMoveable(m_pMoveEntities, _deltaTime);
 
-	// check collision for all entities
-	for each(TexturedEntity* entity in m_pMoveEntities)
-	{
-		// if entity is enemy
-		if (entity->GetTag() == "Enemy")
-		{
-			((Enemy*)entity)->CheckCollision(m_pMoveEntities, _deltaTime);
-			((Enemy*)entity)->CheckCollision(m_pWorld->GetEntities(), _deltaTime);
-		}
-	}
-
-	// check collision
+	// check collisions
 	CheckCollision(_deltaTime);
 }
 
@@ -103,14 +81,15 @@ void MainScene::Load(Renderer * _pRenderer)
 	// create player
 	m_pPlayer = new Player(_pRenderer, 
 		GetAssetPath("Texture/Character/T_Character_Idle.png", 5).c_str(), 
-		new Rect(0, 0, 64, 64), GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str(),
-		GetAssetPath("Texture/Character/T_RunBar.png", 5).c_str());
+		new Rect(Point::Zero(), new Point(64, 64)));
 
 	// set speed
-	m_pPlayer->SetSpeed(100);
+	m_pPlayer->SetSpeed(150);
 
 	// set current scene of player
-	m_pPlayer->SetCurrentScene(this);
+	m_pPlayer->SetScene(this);
+
+	m_pMoveEntities.push_back(m_pPlayer);
 
 	// create text
 	m_pFPS = new Text(new Rect(100, 50), "FPS:",
@@ -128,8 +107,10 @@ void MainScene::Load(Renderer * _pRenderer)
 	m_pWorld->LoadWorld(_pRenderer);
 
 	// create enemy
-	Enemy* enemy = new Enemy(_pRenderer, GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
-		new Rect(128, 128, 64, 64), GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
+	Enemy* enemy = new Enemy(_pRenderer,
+		GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
+		new Rect(new Point(128), Point::Unit()),
+		GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
 
 	// set speed
 	enemy->SetSpeed(100);
@@ -137,15 +118,14 @@ void MainScene::Load(Renderer * _pRenderer)
 	// set collision type
 	enemy->SetColType(ECollisionType::MOVE);
 
-	// set player reference
-	enemy->SetPlayer(m_pPlayer);
-
 	// add enemy to list
 	m_pMoveEntities.push_back(enemy);
 
-	// create enemy
-	Enemy* enemy2 = new Enemy(_pRenderer, GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
-		new Rect(128, 256, 64, 64), GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
+	// create enemy 2
+	Enemy* enemy2 = new Enemy(_pRenderer,
+		GetAssetPath("Texture/Character/T_Enemy_Idle.png", 5).c_str(),
+		new Rect(256, 128, Point::Unit()),
+		GetAssetPath("Texture/Character/T_HealthBar.png", 5).c_str());
 
 	// set speed
 	enemy2->SetSpeed(100);
@@ -153,119 +133,57 @@ void MainScene::Load(Renderer * _pRenderer)
 	// set collision type
 	enemy2->SetColType(ECollisionType::MOVE);
 
-	// set player reference
-	enemy2->SetPlayer(m_pPlayer);
-
 	// add enemy to list
 	m_pMoveEntities.push_back(enemy2);
 
-	// create new pickup
-	Pickup* pickup = new Pickup(_pRenderer, GetAssetPath("Texture/Items/T_Pickup.png", 5).c_str(),
-		new Rect(480, 128, 32, 32));
+	// create soulstone
+	Soulstone* soulstone = new Soulstone(_pRenderer,
+		GetAssetPath("Texture/Items/T_Soulstone.png", 5).c_str(),
+		new Rect(new Point(256 + 16), new Point(32)));
 
-	// set collision type
-	pickup->SetColType(ECollisionType::BULLET);
+	// add soulstone to entity list
+	m_pMoveEntities.push_back(soulstone);
 
-	// add pickup to list
-	m_pMoveEntities.push_back(pickup);
+	// create chest
+	Chest* chest = new Chest(_pRenderer,
+		GetAssetPath("Texture/Objects/T_Chest.png", 5).c_str(),
+		new Rect(new Point(512), new Point(64)), this);
 
-	// create music
-	m_pBackgroundMusic = new Music(GetAssetPath("Sound/Music/M_Background.wav", 5).c_str());
+	// addchest to entity list
+	m_pMoveEntities.push_back(chest);
+	m_pMoveEntities.push_back((TexturedEntity*)chest->GetTrigger());
 
-	// play music
-	m_pBackgroundMusic->Play(true);
+	// create chest
+	Chest* chest2 = new Chest(_pRenderer,
+		GetAssetPath("Texture/Objects/T_Chest.png", 5).c_str(),
+		new Rect(new Point(512 - 128), new Point(64)), this);
+
+	// addchest to entity list
+	m_pMoveEntities.push_back(chest2);
+	m_pMoveEntities.push_back((TexturedEntity*)chest2->GetTrigger());
 }
 
 void MainScene::Unload()
 {
-	// delete all entities to remove
-	while (m_pEntitiesToRemove.size() > 0)
-	{
-		// get first entity
-		Entity* entity = m_pEntitiesToRemove.front();
-
-		// remove entity from entites to remove
-		m_pEntitiesToRemove.remove(entity);
-
-		// remove entity from move entites
-		m_pMoveEntities.remove((TexturedEntity*)entity);
-
-		// delete entity
-		delete entity;
-	}
-
-	while (m_pTexts.size() > 0)
-	{
-		// get first text
-		Text* text = m_pTexts.front();
-
-		// remove text from text list
-		m_pTexts.remove(text);
-
-		// delete text
-		delete text;
-	}
-
-	while (m_pMoveEntities.size() > 0)
-	{
-		// get first entity
-		TexturedEntity* entity = m_pMoveEntities.front();
-
-		// remove entity from entity list
-		m_pMoveEntities.remove(entity);
-
-		// delete entity
-		delete entity;
-	}
-
 	// delete world
 	delete m_pWorld;
-
-	// delete fps text
-	delete m_pFPS;
-
-	// delete music
-	delete m_pBackgroundMusic;
-
-	// delete player
-	delete m_pPlayer;
-
-	// unload parent
-	Scene::Unload();
 }
 
 void MainScene::CheckCollision(float _deltaTime)
 {
-	// bool if player dead
-	bool playerDead = false;
-
 	// check all move entities
 	for each (TexturedEntity* entity in m_pMoveEntities)
 	{
 		// if bullet
 		if (entity->GetColType() == ECollisionType::BULLET)
 		{
-			// check all move entities
 			for each (TexturedEntity* moveEntity in m_pMoveEntities)
 			{
-				// if bullet is pickup and move entity is enemy
-				if (entity->GetTag() == "Pickup" &&
-					moveEntity->GetTag() == ENEMY)
-				{
-					// check collision
-					if (Physics::RectRectCollision(entity->GetRect(), moveEntity->GetRect()))
-					{
-						// increase health and add pickuup to remove list
-						((Enemy*)moveEntity)->IncreaseHealth(25);
-						m_pEntitiesToRemove.push_back(entity);
-					}
-				}
-
-				// if collision type none or bullet ignore entity
+				// if collision type none or bullet ignore collision
 				if (moveEntity->GetColType() == ECollisionType::NONE ||
 					moveEntity->GetColType() == ECollisionType::BULLET)
 					continue;
-
+				
 				// check collision
 				if (Physics::RectRectCollision(entity->GetRect(), moveEntity->GetRect()))
 				{
@@ -276,14 +194,17 @@ void MainScene::CheckCollision(float _deltaTime)
 					{
 						// take damage
 						((Enemy*)moveEntity)->TakeDamage(25);
+
+						// if enemy health lower than 0 add to remove list
+						if (((Enemy*)moveEntity)->GetHealth() <= 0)
+							m_pEntitiesToRemove.push_back(moveEntity);
 					}
 				}
 			}
 
-			// check all move entities
-			for each (TexturedEntity* moveEntity in m_pWorld->GetEntities())
+			for each (Entity* moveEntity in m_pWorld->GetEntities())
 			{
-				// if collision type none or bullet ignore entity
+				// if collision type none or bullet ignore collision
 				if (moveEntity->GetColType() == ECollisionType::NONE ||
 					moveEntity->GetColType() == ECollisionType::BULLET)
 					continue;
@@ -297,64 +218,33 @@ void MainScene::CheckCollision(float _deltaTime)
 
 			// if bullet hits player
 			if (Physics::RectRectCollision(entity->GetRect(), m_pPlayer->GetRect()))
-			{
-				// if bullet type is pickup
-				if (entity->GetTag() == "Pickup")
-				{
-					// check collision
-					if (Physics::RectRectCollision(entity->GetRect(), m_pPlayer->GetRect()))
-					{
-						// increase player health and add pickup to remove list
-						m_pPlayer->IncreaseHealth(25);
-						m_pEntitiesToRemove.push_back(entity);
-					}
-				}
-
-				// if normal bullet
-				else
-				{
-					// add to remove list and take damage on player
-					m_pEntitiesToRemove.push_back(entity);
-					m_pPlayer->TakeDamage(5);
-				}
-
-				// if player health under 0 set bool
-				if(m_pPlayer->GetHealth() <= 0)
-					playerDead = true;
-			}
+				m_pEntitiesToRemove.push_back(entity);
 
 			// if bullet is out of screen
-			if (entity->GetRect()->x < m_pPlayer->GetRect()->x - 624
-				|| entity->GetRect()->x > m_pPlayer->GetRect()->x + 688
-				|| entity->GetRect()->y < m_pPlayer->GetRect()->y - 408
-				|| entity->GetRect()->y > m_pPlayer->GetRect()->y + 344)
+			if (entity->GetRect()->x < m_pPlayer->GetRect()->x - 624 ||
+				entity->GetRect()->x > m_pPlayer->GetRect()->x + 688 ||
+				entity->GetRect()->y < m_pPlayer->GetRect()->y - 344 ||
+				entity->GetRect()->y > m_pPlayer->GetRect()->y + 408) 
 			{
 				m_pEntitiesToRemove.push_back(entity);
 			}
 		}
 	}
 
-	// as long as there is a entity to remove
-	// NO FOR EACH !!!
+	// as long as there is an entity to remove
+	// NO FOR EACH
 	while (m_pEntitiesToRemove.size() > 0)
 	{
 		// get first entity
 		Entity* entity = m_pEntitiesToRemove.front();
 
-		// remove entity from entites to remove
+		// remove entity from entities to remove
 		m_pEntitiesToRemove.remove(entity);
 
-		// remove entity from move entites
+		// remove entity from move entities
 		m_pMoveEntities.remove((TexturedEntity*)entity);
 
 		// delete entity
 		delete entity;
-	}
-
-	// if player dead change scene
-	if (playerDead)
-	{
-		MenuScene* menuScene = new MenuScene(m_pEngine);
-		m_pEngine->ChangeScene(menuScene);
 	}
 }

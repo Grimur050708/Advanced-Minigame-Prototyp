@@ -22,9 +22,6 @@ public:
 	// running program
 	void Run();
 
-	// quit engine
-	void Quit();
-
 	// cleaning program
 	void Clean();
 

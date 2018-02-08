@@ -15,7 +15,7 @@ TexturedEntity::TexturedEntity(Renderer * _pRenderer, const char * _pFileName, R
 TexturedEntity::~TexturedEntity()
 {
 	// important to delete pointer
-	if(m_colType != ECollisionType::BULLET)
+	if (m_colType != ECollisionType::BULLET)
 		delete m_pTexture;
 
 	delete m_pRect;
@@ -29,6 +29,10 @@ void TexturedEntity::Render(Renderer * _pRenderer)
 {
 	// render texture
 	_pRenderer->RenderTexture(m_pTexture, m_pRect, nullptr, m_angle, true);
+}
+
+void TexturedEntity::Trigger(Player* _pPlayer)
+{
 }
 
 Rect * TexturedEntity::GetRect()

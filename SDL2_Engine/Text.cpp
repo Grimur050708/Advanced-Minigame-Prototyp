@@ -24,7 +24,7 @@ Text::~Text()
 	SDL_FreeSurface(m_pSurface);
 
 	if (m_pTexture != nullptr)
-		SDL_DestroyTexture(m_pTexture);
+		SDL_DestroyTexture(m_pTexture); delete m_pTexture;
 }
 
 void Text::Load(Renderer * _pRenderer)

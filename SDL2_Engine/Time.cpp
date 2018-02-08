@@ -8,7 +8,7 @@ Time::Time()
 	// get current time
 	m_lastUpdate = clock();
 
-	// set frames und time since last update
+	// set frames and time since last update
 	m_framesSinceLastTimeStamp = 0;
 	m_timeSinceLastTimeStamp = 0;
 }
@@ -18,7 +18,7 @@ void Time::Update()
 	// current time
 	clock_t now = clock();
 
-	// difference to last frame
+	// difference to the last frame
 	clock_t dif = now - m_lastUpdate;
 
 	// set delta time
@@ -27,7 +27,7 @@ void Time::Update()
 	// set last update
 	m_lastUpdate = now;
 
-	// increase frames since last time tamp
+	// increase frames since last time stamp
 	m_framesSinceLastTimeStamp++;
 
 	// increase time since last time stamp
@@ -42,7 +42,7 @@ void Time::Update()
 		// reset frames since last time stamp
 		m_framesSinceLastTimeStamp = 0;
 
-		// decrease time since time stamp
+		// decrease time since last time stamp
 		m_timeSinceLastTimeStamp -= CLOCKS_PER_SEC;
 	}
 }

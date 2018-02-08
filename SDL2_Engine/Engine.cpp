@@ -1,9 +1,8 @@
 #include "Engine.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <SDL_mixer.h>
 #include <iostream>
-#include "MenuScene.h"
+#include "MainScene.h"
 #include "Helper.h"
 #include "Renderer.h"
 #include "Input.h"
@@ -59,9 +58,6 @@ bool Engine::Init()
 	// renderer error
 	HANDLE_ERROR(m_pRenderer == nullptr);
 
-	// initialize sdl mixer
-	HANDLE_ERROR(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0);
-
 	// set running
 	m_isRunning = true;
 
@@ -70,11 +66,11 @@ bool Engine::Init()
 
 bool Engine::Load()
 {
-	// new time
+	// create time
 	m_pTime = new Time();
 
 	// create new pointer and value on heap
-	MenuScene* pScene = new MenuScene(this);
+	MainScene* pScene = new MainScene(this);
 
 	// create value stack
 	// MainScene scene = MainScene(this);
@@ -99,21 +95,16 @@ void Engine::Run()
 	}
 }
 
-void Engine::Quit()
-{
-	// set running false
-	m_isRunning = false;
-
-	ChangeScene(nullptr);
-}
-
 void Engine::Clean()
 {
 	// delete renderer
 	delete m_pRenderer;
 
-	// close audio
-	Mix_CloseAudio();
+	// free surface
+	SDL_FreeSurface(m_pSurface);
+
+	// delete time
+	delete m_pTime;
 }
 
 void Engine::ChangeScene(Scene * _pNewScene)
@@ -126,8 +117,7 @@ void Engine::ChangeScene(Scene * _pNewScene)
 	m_pScene = _pNewScene;
 
 	// new scene load
-	if(m_pScene)
-		m_pScene->Load(m_pRenderer);
+	m_pScene->Load(m_pRenderer);
 }
 
 void Engine::Render()
