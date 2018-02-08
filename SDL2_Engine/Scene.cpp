@@ -9,3 +9,8 @@ Scene::Scene(Engine * _pEngine)
 Scene::~Scene()
 {
 }
+
+void Scene::Unload()
+{
+	delete this;
+}

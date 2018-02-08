@@ -19,9 +19,6 @@ public:
 	// render every frame
 	virtual void Render(Renderer* _pRenderer) override;
 
-	// trigger
-	virtual void Trigger(Player* _pPlayer) override;
-
 	// get rect
 	virtual Rect* GetRect() override;
 

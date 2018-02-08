@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Macros.h"
 
 #define HANDLE_ERROR(CHECK)						\
 if(CHECK)										\

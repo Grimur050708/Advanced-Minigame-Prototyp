@@ -4,7 +4,7 @@
 class Time
 {
 public:
-	// constructor
+	// conctructor
 	Time();
 
 	// update every frame
@@ -17,7 +17,7 @@ public:
 	static inline int GetFPS() { return m_fps; };
 
 private:
-	// frames per seconds
+	// frames per soeconds
 	static int m_fps;
 
 	// delta time
